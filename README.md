@@ -2,10 +2,15 @@
 
 12/12/2022
 
-- install and run NestJS
+- install and run NestJS basic new project
 
 > npm i -g @nestjs/cli
 > nest new ignitelab-nestjs-prisma
+> npm run start:dev
+
+- for use my project: clone this project with git clone and
+
+> npm i -g @nestjs/cli
 > npm run start:dev
 
 - install Prisma
@@ -18,18 +23,34 @@
 
 - warn if you already have a .gitignore file. Don't forget to add `.env` in it to not commit any private information.
 - Next steps:
-- 1. Set the DATABASE_URL in the .env file to point to your existing database. If your database has no tables yet, read https://pris.ly/d/getting-started
+- 1. Set the DATABASE_URL in the .env file to point to your existing database.
+     note: If your database has no tables yet, read https://pris.ly/d/getting-started
 - 2. Run prisma db pull to turn your database schema into a Prisma schema.
 - 3. Run prisma generate to generate the Prisma Client. You can then start querying your database.
 
 - install Validator
+
   > npm i class-validator
   > npm i class-transformer
+
+- install eslint - locally - with auto fix
+
+  > npm init @eslint/config
+  > npm install eslint
+  > eslint
+  > .\node_modules\.bin\eslint --init
+
+- config on settings.json
+  "eslint-config": "tools"
+  "editor.codeActionsOnSave": {
+  "source.fixAll.eslint": true
+  }
 
 [nestjs docs]: https://docs.nestjs.com/
 [nestjs cli]: https://docs.nestjs.com/cli/overview
 [prisma quickstart]: https://www.prisma.io/docs/getting-started/quickstart
 [prisma recipes nestjs]: https://docs.nestjs.com/recipes/prisma
+[eslint]: https://eslint.org/
 
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>

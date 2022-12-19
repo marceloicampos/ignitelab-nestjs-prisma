@@ -12,13 +12,14 @@
 
 > npm i -g @nestjs/cli
 > npm run start:dev
+> http://localhost:3000/app/hello 
 
 - install Prisma
 
 > npm i prisma -D
 > npm i @prisma/client
 > npx prisma init --datasource-provider sqlite
-> npx prisma migrate dev (then enter a name: create notifications)
+> npx prisma migrate dev (generate the schema and then enter a name: create notifications)
 > npx prisma studio
 
 - warn if you already have a .gitignore file. Don't forget to add `.env` in it to not commit any private information.

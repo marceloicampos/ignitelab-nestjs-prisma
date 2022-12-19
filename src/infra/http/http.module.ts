@@ -7,14 +7,16 @@ import { ReadNotification } from '@application/use-cases/read-notification';
 import { CountRecipientNotifications } from '@application/use-cases/count-recipient-notifications';
 import { GetRecipientNotifications } from '@application/use-cases/get-recipient-notifications';
 import { CancelNotification } from '@application/use-cases/cancel-notification';
+import { PrismaService } from '@infra/database/prisma/prisma.service';
 
 @Module({
   imports: [DatabaseModule],
   controllers: [NotificationsController],
   providers: [
+    PrismaService,
     CancelNotification,
-    GetRecipientNotifications,
     CountRecipientNotifications,
+    GetRecipientNotifications,
     ReadNotification,
     UnreadNotification,
     SendNotification,

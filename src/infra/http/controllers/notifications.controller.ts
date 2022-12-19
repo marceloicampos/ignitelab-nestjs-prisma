@@ -1,14 +1,14 @@
 import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
-import { AppService } from '../../services/app.service';
 import { CreateNotificationBody } from '../dtos/create-notification-body';
 import { NotificationViewModels } from '../view-models/notification-view-models';
+import { AppService } from '../../services/app.service';
+import { PrismaService } from '../../database/prisma/prisma.service';
 import { CancelNotification } from '@application/use-cases/cancel-notification';
-import { GetRecipientNotifications } from '@application/use-cases/get-recipient-notifications';
 import { CountRecipientNotifications } from '@application/use-cases/count-recipient-notifications';
+import { GetRecipientNotifications } from '@application/use-cases/get-recipient-notifications';
 import { ReadNotification } from '@application/use-cases/read-notification';
 import { UnreadNotification } from '@application/use-cases/unread-notification';
 import { SendNotification } from '@application/use-cases/send-notification'; // ERROR PATH
-// import { PrismaService } from '../../prisma.service';
 // import { randomUUID } from 'node:crypto';
 
 @Controller('app')
@@ -25,18 +25,19 @@ export class AppController {
 @Controller('notifications')
 export class NotificationsController {
   constructor(
+    private readonly prisma: PrismaService,
     private cancelNotification: CancelNotification,
-    private getRecipientNotifications: GetRecipientNotifications,
     private countRecipientNotifications: CountRecipientNotifications,
+    private getRecipientNotifications: GetRecipientNotifications,
     private readNotification: ReadNotification,
     private unreadNotification: UnreadNotification,
     private sendNotification: SendNotification,
   ) {}
-  // constructor(private readonly prisma: PrismaService) {}
-  // @Get()
-  // list() {
-  //   return this.prisma.notification.findMany();
-  // }
+
+  @Get('list')
+  list() {
+    return this.prisma.notification.findMany();
+  }
 
   @Patch(':id/cancel')
   async cancel(@Param('id') id: string) {
@@ -107,6 +108,6 @@ export class NotificationsController {
     // });
   }
 }
-// ESTAMOS SEM ROTA GET, SOMENTE POST
-// rota atual http://localhost:3000/notifications
+
+// rota list http://localhost:3000/notifications/list
 // controllers controlam as rotas
